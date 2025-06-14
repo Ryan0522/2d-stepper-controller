@@ -1,6 +1,6 @@
 
 /**************************************************************************
-*  Developed by: Josh Burdine                                             *
+*  Developed by: Josh Burdine and Ci-You Huang                                            *
 *  Under Lab Primary Investigator: Dr. Chen-Yu Liu                        *
 *  With guidance from Graduate Student: Nathan Callahan                   *
 *                                                                         *

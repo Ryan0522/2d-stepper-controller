@@ -1,6 +1,6 @@
 
 /**************************************************************************
-*  Developed by: Josh Burdine and Ci-You Huang                                            *
+*  Developed by: Ci-You Huang and Josh Burdine                                            *
 *  Under Lab Primary Investigator: Dr. Chen-Yu Liu                        *
 *  With guidance from Graduate Student: Nathan Callahan                   *
 *                                                                         *
@@ -10,7 +10,7 @@
 *  This code can be used with proper reference to the original authors    *
 *  and UCNtau project.                                                    *
 *                                                                         *
-*  Current Version as of Thursday June, 11th 2020 6:00PM                  *
+*  Current Version as of Saturday June, 14th 2025 18:41PM                  *
 *                                                                         *
 ***************************************************************************/
  

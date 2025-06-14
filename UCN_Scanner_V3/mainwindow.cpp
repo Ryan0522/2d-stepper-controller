@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     port(new QSerialPort(this))
 {
     ui->setupUi(this);
-    ui->label_4->setPixmap(QPixmap("/home/labuser/Desktop/stepper-controller/UCN_Scanner_V3/label_4.png"));
+    ui->label_4->setPixmap(QPixmap(":/images/label_4.png"));
 
     ui->xPosEdit->setText("0.000");
     ui->yPosEdit->setText("0.000");

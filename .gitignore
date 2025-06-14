@@ -1,0 +1,16 @@
+# Qt build files
+build*/
+*.pro.user
+*.o
+*.obj
+*.log
+
+# Arduino
+*.hex
+*.elf
+
+# General
+*.DS_Store
+
+# Earlier Arduino Version
+stepper_control_GUI_Ver1*/

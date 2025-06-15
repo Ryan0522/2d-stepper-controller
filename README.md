@@ -66,6 +66,13 @@ To build and run the GUI for the 2D stepper system, you need **Qt 6.7+** install
 
 Either open it from the Qt Creator interface or go to the directory in terminal and use the command ``qtcreator .``. Make sure the ``.qrc`` file includes ``label_r.png``.
 
+#### (IMPORTANT) Enabling Serial Port Support in Qt & Serial Debugging ####
+
+1. Open and Login to the **Qt Maintenance Tool**
+2. Select **Add or remove components**
+3. Search and select **Qt Serial Port** and **Qt Serial Bus** under the **correct** Qt version
+4. Save and exit the tool and restart Qt Creator
+
 #### Serial Port Permission ####
 
 This project requires serial port communication. Allow Qt to access the Arduino serial port (``/dev/ttyACM0`` for example): <br>
@@ -111,6 +118,24 @@ Note: If upload fails due to permissions, you may also need: ``sudo chmod a+rw /
    - Scans custom region with motor delay = timing
    - Auto-homes on completion
    - Sends ``<SCAN_DONE>`` back to GUI
+
+## Debugging Arduino Through Terminal ##
+
+One way to debug code on arduino is to bypass Qt Creator and use terminal with other dependencies. Here, we show a way to test serial connection and arduino responses (and outputs) through ``minicom``
+
+1. Install ``minicom``
+   - ``sudo apt update``
+   - ``sudo apt install minicom``
+2. Setting up ``minicom``
+   - Enter setting using ``minicom -s``. In there, use arrows and enter keys for controlling.
+   - Go to ``Serial port setup`` (use A~N to go to setting, enter to select). Change **serial device** to Arduino port (``/dev/ttyACM0`` for example), and change the **Bps/Par/Bits** setting to ``9600 8N1``.
+   - ``Save setup as dfl`` and then ``Exit from Minicom``.
+3. Connecting to Arduino
+   - Enter ``minicom`` and the new setting should connect to Arduino automatically. The Arduino return-home initialization process should have the motor move in an L-shape.
+4. Controlling and Communicating with Arduino
+   - Note: minicom has bugs, and for me the commands I entered never displayed on the terminal side but is able to transfer to Arduino. Also, CTRL-A Z sometimes don't show the menu but it still exist.
+   - Below are useful commands:
+     1) 
 
 ## Developer Notes ##
 

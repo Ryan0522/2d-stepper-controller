@@ -135,6 +135,21 @@ One way to debug code on arduino is to bypass Qt Creator and use terminal with o
 4. Controlling and Communicating with Arduino
    - Note: minicom has bugs, and for me the commands I entered never displayed on the terminal side but is able to transfer to Arduino. Also, ``CTRL-A Z`` sometimes don't show the menu but it is still there for some reason.
    - Below are useful commands:
+     1) ``<1, 0, 0>``: Step X Back
+     2) ``<2, 0, 0>``: Step Y Back
+     3) ``<3, 0, 0>``: Step X Forward
+     4) ``<4, 0, 0>``: Step Y Forward
+     5) ``<5, spacing, timing, rowMin, rowMax, colMin, colMax>``: Start Region Scan
+        - ``spacing`` in cm
+        - ``timing`` in seconds
+        - ``rowMin``, ``rowMax``, ``colMin``, ``colMax`` are 0-indexed grid bounds
+     6) ``<6, 0, 0>``: Stop Scan
+        - Returns ``9`` if scan was running
+        - Returns ``0`` isf scan was not active
+     7) ``<7, x_cm, y_cm>``: Move to Specific Position (to ``(x_cm, y_cm)``)
+     8) ``<8, 0, 0>``: Return to home ``(0, 0)``
+     9) ``<9, i, 0>`` Enable (i=1) / Disable (i=0) Debug Mode
+     10) ``<T, any, 0>`` Serial Port Test Command
    - To exit: ``CTRL-A + X + Enter``
 
 ## Developer Notes ##

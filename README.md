@@ -50,16 +50,6 @@ To build and run the GUI for the 2D stepper system, you need **Qt 6.7+** install
    4) Select Qt 6.7.x (or higher) and Qt Creator
    5) Choose the Desktop GCC 64-bit kit
 
-#### Open the Project ####
-
-Either open it from the Qt Creator interface or go to the directory in terminal and use the command ``qtcreator .``.
-
-#### Serial Port Permission ####
-
-This project requires serial port communication. Allow Qt to access the Arduino serial port (``/dev/ttyACM0`` for example): <br>
-``sudo usermod -aG dialout $USER`` <br>
-Then **log out and log back in** for the group change to take effect.
-
 ### Arduino Firmware ###
 
 #### Install Arduino IDE ####
@@ -67,7 +57,22 @@ Then **log out and log back in** for the group change to take effect.
 1. ``sudo apt update``
 2. ``sudo apt install arduino``
 
-#### Upload the Code to Arduino ####
+## Working with Qt Creator and Arduino ##
+
+### Building and Running the Qt GUI
+
+
+#### Open the Project ####
+
+Either open it from the Qt Creator interface or go to the directory in terminal and use the command ``qtcreator .``. Make sure the ``.qrc`` file includes ``label_r.png``.
+
+#### Serial Port Permission ####
+
+This project requires serial port communication. Allow Qt to access the Arduino serial port (``/dev/ttyACM0`` for example): <br>
+``sudo usermod -aG dialout $USER`` <br>
+Then **log out and log back in** for the group change to take effect.
+
+### Upload the Code to Arduino ###
 
 1. Open the Arduino folder in Arduino IDE
 2. Connect your board (e.g., Arduino Uno)
@@ -78,7 +83,37 @@ Then **log out and log back in** for the group change to take effect.
 
 Note: If upload fails due to permissions, you may also need: ``sudo chmod a+rw /dev/ttyACM0``
 
-## Working with Qt Creator and Arduino ##
-
-
 ## Setting up and Running the System ##
+
+### Hardware Notes ###
+
+1. **X motor:** mounted for 59 cm travel range (~4214 steps at 1/32 microstepping)
+2. **Y motor:** mounted for 28 cm travel range (~1992 steps)
+3. **Limit switches** connected to ``homeXPin`` and ``homeYPin``
+4. **Microstepping pins** configured via ``mode0``, ``mode1``, ``mode2``
+5. Arduino **automatically homes** on power-up
+
+### GUI Usage ###
+
+1. Set **Spacing / Sample Time** in cm / seconds
+2. Select **Scan Region** in grid (default: all selected)
+3. **Click** ``Run Scan`` to start scanning (can be stopped by ``Stop Scan``)
+4. **Positioning buttons** allow manual control:
+   - ``X Forward``, ``X Backward``, ``Y Forward``, ``Y Backward``
+   - ``Update Position``, ``Return Home``
+
+### Scan Protocol ###
+
+1. GUI sends command: ``<5, spacing, timing, rowMin, rowMax, colMin, colMax>`` (row and col are indices)
+2. Arduino:
+   - Auto-homes if scanner not at (0, 0)
+   - Waits 2s for acquisition setup
+   - Scans custom region with motor delay = timing
+   - Auto-homes on completion
+   - Sends ``<SCAN_DONE>`` back to GUI
+
+## Developer Notes ##
+
+- The system uses **serial markers** (``<...>``) for robust communication
+- Debug messsages can be toggled via ``Debug Mode`` checkbox
+- Estimated scan end time is displayed live (``--/--, --:--, --``)

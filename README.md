@@ -133,9 +133,9 @@ One way to debug code on arduino is to bypass Qt Creator and use terminal with o
 3. Connecting to Arduino
    - Enter ``minicom`` and the new setting should connect to Arduino automatically. The Arduino return-home initialization process should have the motor move in an L-shape.
 4. Controlling and Communicating with Arduino
-   - Note: minicom has bugs, and for me the commands I entered never displayed on the terminal side but is able to transfer to Arduino. Also, CTRL-A Z sometimes don't show the menu but it still exist.
+   - Note: minicom has bugs, and for me the commands I entered never displayed on the terminal side but is able to transfer to Arduino. Also, ``CTRL-A Z`` sometimes don't show the menu but it is still there for some reason.
    - Below are useful commands:
-     1) 
+   - To exit: ``CTRL-A + X + Enter``
 
 ## Developer Notes ##
 

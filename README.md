@@ -42,7 +42,7 @@ To build and run the GUI for the 2D stepper system, you need **Qt 6.7+** install
 #### Installing Qt Creator (Education Version)
 
 1. Fill out the form and follow the instruction on [Qt Creator Download Instruction](https://www.qt.io/qt-educational-license) to register an education account.
-2. Download from [Qt Creator Download link](https://www.qt.io/download-gt-installer)
+2. Download from [Qt Creator Download link](https://www.qt.io/download-qt-installer)
 3. Make the file ``qt-online-installer-linux-x64-4.10.0.run`` executable by entering from termianl in the directory:
    1) ``chmod +x qt-online-installer-linux-x64-4.10.0.run``.
    2) ``./qt-online-installer-linux-x64-4.10.0.run``

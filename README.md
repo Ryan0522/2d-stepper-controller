@@ -49,6 +49,7 @@ To build and run the GUI for the 2D stepper system, you need **Qt 6.7+** install
    3) Login with your Qt account
    4) Select Qt 6.7.x (or higher) and Qt Creator
    5) Choose the Desktop GCC 64-bit kit
+4. (Note) If missing xcb cursor plotform library, run ``sudo apt update`` and ``sudo apt install libxcb.cursor0 libxcb.curcor-dev`` in terminal to fix.
 
 ### Arduino Firmware ###
 

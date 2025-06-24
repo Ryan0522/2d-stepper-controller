@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>821</width>
-    <height>436</height>
+    <width>1009</width>
+    <height>592</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -355,8 +355,8 @@
      <rect>
       <x>520</x>
       <y>40</y>
-      <width>291</width>
-      <height>361</height>
+      <width>461</width>
+      <height>521</height>
      </rect>
     </property>
    </widget>
@@ -427,8 +427,8 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>780</x>
-      <y>20</y>
+      <x>940</x>
+      <y>10</y>
       <width>66</width>
       <height>18</height>
      </rect>
@@ -440,8 +440,8 @@
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>480</x>
-      <y>380</y>
+      <x>470</x>
+      <y>520</y>
       <width>41</width>
       <height>18</height>
      </rect>
@@ -453,9 +453,9 @@
    <widget class="Line" name="line">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>380</y>
-      <width>291</width>
+      <x>530</x>
+      <y>530</y>
+      <width>431</width>
       <height>20</height>
      </rect>
     </property>
@@ -947,10 +947,10 @@
    <widget class="Line" name="line_2">
     <property name="geometry">
      <rect>
-      <x>790</x>
+      <x>950</x>
       <y>40</y>
       <width>20</width>
-      <height>361</height>
+      <height>511</height>
      </rect>
     </property>
     <property name="palette">

@@ -23,6 +23,7 @@ void executeCmd();
 void recDataWithMarkers();
 void parseData();
 void sendCurrentPos();
+void sendExtTrg();
 
 /* Variables for serial communication and data handling*/
 const byte numChars = 32;
@@ -60,6 +61,8 @@ bool debug = false;
 int STEP_RES = 5;
 
 // Set digital pin values
+int extTrgPin = 2; // Added Jun 17 2025 for External Trigger signal for SIS-3316
+
 int mode0 = 3; // Microstepping MODE0 pin
 int mode1 = 4; // Microstepping MODE1 pin
 int mode2 = 5; // Microstepping MODE2 pin
@@ -83,6 +86,9 @@ bool initHomeFlag = false;
 void setup() 
 {
   Serial.begin(9600);
+  pinMode(extTrgPin, OUTPUT);
+  digitalWrite(extTrgPin, LOW);
+  
   pinMode(sleepPin, OUTPUT);
   pinMode(resetPin, OUTPUT);
   pinMode(stepPin1, OUTPUT);
@@ -225,6 +231,12 @@ void sendCurrentPos()
   delay(150);
 }
 
+void sendExtTrg() {
+  digitalWrite(extTrgPin, HIGH); // Set pin 0 to HIGH (5V)
+  delay(1);           // Wait 1 ms
+  digitalWrite(extTrgPin, LOW);
+}
+
 void scan()
 {
   /*************************************
@@ -304,6 +316,8 @@ void scan()
       Serial.println(">");
       Serial.flush();
       delay(150);
+      
+      sendExtTrg();
 
       for (int t = 0; t < delayMs; ++t) {
         if (Serial.available()) return;

@@ -62,6 +62,8 @@ public:
 
     // Realtime update spacing
     double lastSpacing = 5.0;
+    const int tableWidth = 460;
+    const int tableHeight = 520;
 
     // Check scanning ends
     QTimer* scanMonitorTimer;

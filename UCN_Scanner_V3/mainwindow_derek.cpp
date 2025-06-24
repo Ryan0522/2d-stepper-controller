@@ -8,7 +8,7 @@
 #include <QSerialPort>
 #include <QSerialPortInfo>
 #include <QThread>
-//#include <cmath> //Derek added
+#include <cmath>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -151,19 +151,12 @@ void MainWindow::transmitVal(char cmd, float val1, float val2)
 // Scanning Grid Setup
 void MainWindow::setupScanGrid() {
     double spacing = ui->sampleSpacing->text().toDouble();
-    // int roundedSpacing = std::max(1, static_cast<int>(std::round(spacing))); //// COMMENTED OUT BY DEREK ////////////
-    // if (spacing != roundedSpacing) {
-    //     ui->sampleSpacing->setText(QString::number(roundedSpacing));
-    //     QMessageBox::warning(this, "Invalid Spacing", "Spacing must be integer (cm) and ≥ 1!");
-    // }
-    // spacing = roundedSpacing; //// COMMENTED OUT BY DEREK ////////////
-
-    // Added Jun 24, 2025
-    if (spacing <= 0) {
-        ui->sampleSpacing->setText(QString::number(1));
-        QMessageBox::warning(this, "Invalid Spacing", "Spacing must be positive!");
-        spacing = 1;
+    int roundedSpacing = std::max(1, static_cast<int>(std::round(spacing)));
+    if (spacing != roundedSpacing) {
+        ui->sampleSpacing->setText(QString::number(roundedSpacing));
+        QMessageBox::warning(this, "Invalid Spacing", "Spacing must be integer (cm) and ≥ 1!");
     }
+    spacing = roundedSpacing;
 
     // Save previous selected positions
     QVector<QPointF> selectedPositions;
@@ -192,25 +185,12 @@ void MainWindow::setupScanGrid() {
     ui->scanGrid->setSelectionBehavior(QAbstractItemView::SelectItems);
     ui->scanGrid->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-    // Added Jun 24, 2025
-    ui->scanGrid->setFixedSize(tableWidth, tableHeight);
-    ui->scanGrid->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    ui->scanGrid->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    ui->scanGrid->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-    ui->scanGrid->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-    ui->scanGrid->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+    ui->scanGrid->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->scanGrid->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->scanGrid->horizontalHeader()->setVisible(false);
     ui->scanGrid->verticalHeader()->setVisible(false);
-
-    int colWidth = tableWidth / numCols; // if this can be double then the table would fit
-    int rowHeight = tableHeight / numRows; // same as the line above
-
-    for (int col = 0; col < numCols; ++col)
-        ui->scanGrid->setColumnWidth(col, colWidth);
-
-    for (int row = 0; row < numRows; ++row)
-        ui->scanGrid->setRowHeight(row, rowHeight);
+    ui->scanGrid->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->scanGrid->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     for (int i = 0; i < numRows; ++i) {
         for (int j = 0; j < numCols; ++j) {
@@ -368,7 +348,7 @@ void MainWindow::on_runScan_clicked()
     scanMonitorTimer->start(100);
 
     if (spacing <= 0 || spacing > 28.0) {
-        QMessageBox::warning(this, "Invalid Spacing", "Sample spacing must be > 0 and < 28.0 cm"); //// commented out by derek////
+        QMessageBox::warning(this, "Invalid Spacing", "Sample spacing must be > 0 and < 28.0 cm");
         return;
     }
 
